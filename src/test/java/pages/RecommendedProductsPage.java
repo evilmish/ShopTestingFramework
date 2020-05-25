@@ -18,7 +18,7 @@ public class RecommendedProductsPage {
         return $$("[class^='product-list-item']");
     }
 
-    public ProductPage clickOnChosenProduct(int elementId){
+    public ProductPage choseProduct(int elementId){
         SelenideElement elem = getAllListedItemsOnPage().get(elementId).hover();
         elem.find("[class='image-wrap']").click();
         return page(ProductPage.class);
