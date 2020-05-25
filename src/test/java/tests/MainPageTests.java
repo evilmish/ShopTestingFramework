@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.Test;
 import pages.AccountPage;
-import pages.CartPage;
 import pages.ProductPage;
 import utils.TestBase;
 
@@ -23,7 +22,7 @@ public class MainPageTests extends TestBase {
                 .choseProduct(20);
 
         String productName = product.getProductName();
-        product.addProductToCart()
+        product.addProductToCartAndBuy()
                 .getFirstAddedProduct().shouldHave(text(productName));
     }
 }
