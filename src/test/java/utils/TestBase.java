@@ -3,6 +3,7 @@ package utils;
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.Getter;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import pages.MainPage;
@@ -19,11 +20,14 @@ public class TestBase {
 
     @BeforeClass
     public void openInitialShopPage() {
-        String chromeVersion = System.getProperty("chrome.driver.version", "");
-        if (!chromeVersion.isEmpty()) {
-            WebDriverManager.chromedriver().version(chromeVersion);
-        }
         Configuration.startMaximized = true;
+        Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "1920x1080";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
         this.shopMainPage = open(baseUrl, MainPage.class);
     }
 

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  selenoid-cm:
+    image: 'aerokube/cm:1.6.0'
+    volumes:
+      - './:/etc/selenoid/'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    command: >
+      selenoid update --config-dir /etc/selenoid --tmpfs 256 --vnc
+      --browsers 'chrome:=76;chrome:=83;firefox:=74'
